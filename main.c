@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     FILE* file = stdin;
 
     FILE* outfile = stdout;
+    int useOutFile = 0;
 
     char* USAGE[] = {
             ESCSEQ"32;40mUSAGE: fileReader [OPTION]\033[0m\n",
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
                 break;
             case 'o':
                 outfile = fopen(optarg, "w");
+                useOutFile = 1;
                 break;
             case 'h':
                 printArray(USAGE);
@@ -50,8 +52,12 @@ int main(int argc, char *argv[])
         }
     }
 
-    printToFile(readFile(file), outfile);
-    //printArray(readFile(file, outfile));
+    if (useOutFile) {
+        printToFile(readFile(file), outfile);
+    } else {
+        printArray(readFile(file));
+    }
+    
     return EXIT_SUCCESS;
 }
 
