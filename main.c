@@ -3,7 +3,7 @@
 #include <unistd.h>
 
 #include "fileReader.h"
-
+#include "fileWriter.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
             "\n",
             "Examples: \n",
             "fileReader -f obeme.txt -o output.txt \n",
+            NULL
     };
 
     while((opt = getopt(argc, argv, ":f:o:h")) != -1)
@@ -34,7 +35,7 @@ int main(int argc, char *argv[])
                 outfile = fopen(optarg, "w");
                 break;
             case 'h':
-                printf(USAGE);
+                printArray(USAGE);
                 return EXIT_SUCCESS;
             case ':':
                 perror("Option needs a value!");
@@ -45,6 +46,11 @@ int main(int argc, char *argv[])
             default:
                 break;
         }
+    }
+
+    if (opt != 1) {
+        printArray(USAGE);
+        return EXIT_FAILURE;
     }
 
     //printArray(readFile(filename, outfile));

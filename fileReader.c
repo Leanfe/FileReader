@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_SIZE 1024
+
 char** readFile(char* path) {
     FILE* in = fopen(path, "r");
 
@@ -45,23 +47,4 @@ char** readFile(char* path) {
     }
     arr[arr_size] = NULL;
     return arr;
-}
-
-
-void printToFile(char** arr, char* out) {
-    FILE *fp = fopen(out, "w");
-
-    for (int i = 0; arr[i]; i++) {
-        fputs(arr[i++], fp);
-    }
-
-    fclose(fp);
-}
-
-/*  UTIL */
-
-void printArray(char** arr) {
-    for (int i = 0; arr[i]; i++) {
-        printf("%d) |%s|\n", i, arr[i]);
-    }
 }

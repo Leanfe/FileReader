@@ -3,7 +3,7 @@ project(FileReader C)
 
 set(CMAKE_C_STANDARD 17)
 
-add_executable(FileReader main.c fileReader.c fileReader.h)
+add_executable(FileReader main.c fileReader.c fileReader.h fileWriter.c fileWriter.h)
 
 # set output target
 set_target_properties(FileReader
