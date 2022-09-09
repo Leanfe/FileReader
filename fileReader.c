@@ -6,8 +6,7 @@
 
 #define MAX_SIZE 1024
 
-char** readFile(char* path) {
-    FILE* in = fopen(path, "r");
+char** readFile(FILE* in) {
 
     char** arr = NULL;
     size_t arr_size = 0;

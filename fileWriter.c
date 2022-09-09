@@ -1,14 +1,13 @@
 #include "fileWriter.h"
 #include <stdio.h>
 
-void printToFile(char** arr, char* out) {
-    FILE *fp = fopen(out, "w");
+void printToFile(char** arr, FILE* file) {
 
     for (int i = 0; arr[i]; i++) {
-        fputs(arr[i++], fp);
+        fputs(arr[i++], file);
     }
 
-    fclose(fp);
+    fclose(file);
 }
 
 /*  UTIL */

@@ -5,22 +5,24 @@
 #include "fileReader.h"
 #include "fileWriter.h"
 
+#define ESCSEQ "\033["
+
 int main(int argc, char *argv[])
 {
     int opt;
-    FILE* filename = stdin;
+    FILE* file = stdin;
+
     FILE* outfile = stdout;
-    int useOut = 0;
 
     char* USAGE[] = {
-            "USAGE: fileReader [OPTION]\n",
-            "Concatenate FILE(s) to standard output. \n",
+            ESCSEQ"32;40mUSAGE: fileReader [OPTION]\033[0m\n",
+            ESCSEQ"33;40mConcatenate FILE(s) to standard output.\033[0m\n",
             "\n",
-            "-f                       read from file \n",
-            "-o                       output to file \n",
+            "-f                       read from file\n",
+            "-o                       output to file\n",
             "\n",
-            "Examples: \n",
-            "fileReader -f obeme.txt -o output.txt \n",
+            ESCSEQ"32;40mExamples:\033[0m\n",
+            ESCSEQ"34;40mfileReader -f obeme.txt -o output.txt\033[0m\n",
             NULL
     };
 
@@ -29,7 +31,7 @@ int main(int argc, char *argv[])
         switch(opt)
         {
             case 'f':
-                filename = fopen(optarg, "r");
+                file = fopen(optarg, "r");
                 break;
             case 'o':
                 outfile = fopen(optarg, "w");
@@ -38,22 +40,19 @@ int main(int argc, char *argv[])
                 printArray(USAGE);
                 return EXIT_SUCCESS;
             case ':':
-                perror("Option needs a value!");
+                printf(ESCSEQ"31;47mOption needs a value!\033[0m");
                 return EXIT_FAILURE;
             case '?':
-                perror("Unknown option!");
+                printf(ESCSEQ"31;47mUnknown option!\033[0m");
                 return EXIT_FAILURE;
             default:
                 break;
         }
     }
 
-    if (opt != 1) {
-        printArray(USAGE);
-        return EXIT_FAILURE;
-    }
-
-    //printArray(readFile(filename, outfile));
+    printToFile(readFile(file), outfile);
+    //printArray(readFile(file, outfile));
     return EXIT_SUCCESS;
 }
+
 
