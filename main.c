@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     } else {
         printArray(readFile(file));
     }
-    
+
     return EXIT_SUCCESS;
 }
 
