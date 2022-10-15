@@ -14,6 +14,6 @@ void printToFile(char** arr, FILE* file) {
 
 void printArray(char** arr) {
     for (int i = 0; arr[i]; i++) {
-        printf("%d) |%s| \n", i, arr[i]);
+        printf("%s\n", arr[i]);
     }
 }
