@@ -18,10 +18,8 @@ int main(int argc, char *argv[])
     char* USAGE[] = {
             ESCSEQ"32;40mUSAGE: fileReader [OPTION]\033[0m\n",
             ESCSEQ"33;40mConcatenate FILE(s) to standard output.\033[0m\n",
-            "\n",
             "-f                       read from file\n",
             "-o                       output to file\n",
-            "\n",
             ESCSEQ"32;40mExamples:\033[0m\n",
             ESCSEQ"34;40mfileReader -f obeme.txt -o output.txt\033[0m\n",
             NULL
